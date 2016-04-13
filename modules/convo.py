@@ -242,7 +242,10 @@ def cmdmsg(senderf, channel, speaker, cmd, isact):
     return True
   elif cmd.startswith("convo add "):
     newconvo = cmd.split(" ", 2)[2]
-    if len(newconvo) > CONVO_MAX_LEN:
+    if not newconvo:
+      senderf("Empty convo, ignoring")
+      return True
+    elif len(newconvo) > CONVO_MAX_LEN:
       senderf("I'm afraid I can't do that: would truncate \"%s\"" % newconvo[400:])
       return True
     addconvo(newconvo, speaker[0])
@@ -283,7 +286,6 @@ def cmdmsg(senderf, channel, speaker, cmd, isact):
       pass
     else:
       senderf("Deleted: " + c)
-      return c
     return True
   elif cmd.startswith("convo fix "):
     return convofix(cmd[len("convo fix "):], speaker, senderf)
