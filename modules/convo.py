@@ -277,15 +277,14 @@ def cmdmsg(senderf, channel, speaker, cmd, isact):
     c = maybe_pop(speaker)
     if c == 0:
       senderf("YOU CANNOT KILL THAT IS ALREADY DEAD (no convos found)")
-      pass
+      return True
     elif c == 1:
       senderf("No convo found since last reload")
-      pass
+      return True
     elif c == 2:
       senderf("You weren't the last convoer, so you can't undo")
-      pass
-    else:
-      senderf("Deleted: " + c)
+      return True
+    senderf("Deleted: " + c)
     return True
   elif cmd.startswith("convo fix "):
     return convofix(cmd[len("convo fix "):], speaker, senderf)
