@@ -3,7 +3,7 @@ import re
 
 from collections import defaultdict
 from module import *
-from ircutil import NICK, NICKCH
+from ircutil import NICK
 
 CONVO_MAX_LEN = 400
 
@@ -74,7 +74,7 @@ def nextgrep(channel) :
 
 def convolast(senderf, channel, pattern, speaker):
   global lastseen
-  match = re.match("^<?([^" + NICKCH + "]?)(" + NICK + ").*$", pattern)
+  match = re.match("^<?([@~%+]?)(" + NICK + ").*$", pattern)
   if match:
     prefix, nick = match.groups()
     if nick.lower() in lastseen[channel].keys():
