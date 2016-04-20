@@ -3,7 +3,7 @@ import re
 
 from collections import defaultdict
 from module import *
-from ircutil import NICK
+from ircutil import NICK, NICKCH
 
 CONVO_MAX_LEN = 400
 
